@@ -1,0 +1,18 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#multi-dropdown {
+    overflow-y: scroll; /* Ganti dengan auto jika perlu */
+}
+
+/* Untuk menyembunyikan scrollbar di berbagai browser */
+#multi-dropdown::-webkit-scrollbar {
+    display: none; /* Untuk Chrome, Safari, dan Opera */
+}
+
+#multi-dropdown {
+    -ms-overflow-style: none;  /* Untuk Internet Explorer dan Edge */
+    scrollbar-width: none; /* Untuk Firefox */
+}
