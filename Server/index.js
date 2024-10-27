@@ -1,14 +1,22 @@
 import express from "express";
 import db from "./config/Database.js";
 import cookieParser from "cookie-parser";
-import session from 'express-session';
+
 import router from "./routes/index.js";
 import dotenv from "dotenv";
 import cors from "cors";
-import Product from "./models/ProductModel.js";
-import Users from "./models/UserModel.js";
-import Transaction from "./models/TransactionModel.js";
 
+import mysql from 'mysql2/promise';
+import session from 'express-session';
+// import MySQLStore from 'express-mysql-session';
+import MySQLStoreModule from 'express-mysql-session';
+const MySQLStore = MySQLStoreModule(session);
+
+dotenv.config();
+
+const app = express();
+app.use(express.json()); 
+app.use(cookieParser());
 
 // try {
 //     await db.authenticate();
@@ -33,22 +41,41 @@ const testConnection = async () => {
 
 testConnection();
 
-const app = express();
-app.use(express.json()); 
-app.use(cookieParser());
+
+
+const pool = mysql.createPool({
+    host: process.env.DB_HOST ,
+    user: process.env.DB_USER ,
+    password: process.env.DB_PASS ,
+    database: process.env.DB_NAME ,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
+
+const sessionStore = new MySQLStore({}, pool);
+
+sessionStore.on('error', function(error) {
+    console.error('Session store error:', error);
+});
+
+app.use(express.urlencoded({ extended: true }));
+
+app.set('trust proxy', 1);
+
 
 app.use(session({
-    secret: process.env.SESS_SECRET, 
+    key: 'session_cookie',
+    secret: process.env.SESS_SECRET,
+    store: sessionStore,
     resave: false,
     saveUninitialized: true,
-    cookie: { 
-
-        httpOnly: true, 
-        secure: true,
+    cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
     }
 }));
 
-dotenv.config();
 
 
 app.use(cors({
@@ -56,19 +83,12 @@ app.use(cors({
     methods: ["POST", "GET", "PATCH", "DELETE",'PUT', "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
- }));
+}));
 
-
-
-// app.use(cookieParser());
-// app.use(express.json());
 app.use(router);
-
-
-
 
 app.use("/", (req, res) => {
     res.send("Server is running");
 });
 
-app.listen(process.env.PORT, ()=> console.log(' Server berjalan pada port '+ process.env.PORT) )
+app.listen(process.env.PORT, () => console.log('Server berjalan pada port ' + process.env.PORT));
