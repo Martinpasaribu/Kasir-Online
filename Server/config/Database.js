@@ -10,15 +10,6 @@ dotenv.config();
 // });
 
 
-// const db = new Sequelize('sql12741115', 'sql12741115', 'pdFKEIVqg2', {
-//     host: 'sql12.freemysqlhosting.net',
-//     dialect: 'mysql',
-//     dialectOptions: {
-//         connectTimeout: 60000 // 60 detik
-//     },
-//     logging: false // Opsional, untuk menonaktifkan logging
-// });
-
 
 
 const db = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
