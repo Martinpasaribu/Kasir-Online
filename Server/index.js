@@ -50,13 +50,16 @@ app.use(session({
 
 dotenv.config();
 
-app.use( cors ({
-    credentials : true, 
-    origin: ['http://localhost:3000','https://kasir-online-client.vercel.app'],
+
+app.use(cors({
+    origin: ["https://www.postman.com", "http://localhost:3000", "https://kasir-online-client.vercel.app"],
     methods: ["POST", "GET", "PATCH", "DELETE",'PUT', "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
-}))
+ }));
+
+
+
 // app.use(cookieParser());
 // app.use(express.json());
 app.use(router);
