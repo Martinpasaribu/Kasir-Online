@@ -42,7 +42,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { 
-        secure: false, 
+        secure: true, 
+        sameSite:'none',
         // httpOnly: true, // Mengurangi risiko serangan XSS
         maxAge: 1000 * 60 * 60 * 24 // Cookie berlaku selama 1 hari
     }
