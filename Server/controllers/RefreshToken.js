@@ -9,16 +9,16 @@ dotenv.config();
 export  const refreshToken = async (req, res) => {
     try {
         const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.status(401).json({message: " Session at cookies empty "});
+        if(!refreshToken) return res.sendStatus(401);
         const user = await Users.findAll( {
             where : {
                 refresh_token: refreshToken
             }
         });
-        if(!user[0]) return res.status(401).json({message: "User noAuth, Login again "});
+        if(!user[0]) return res.sendStatus(403);
         jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => 
         {
-            if(err) return res.status(401).json({message: "Token No Veryfy, Login again "});
+            if(err) return res.sendStatus(403);
             const userId = user[0].id;
             const name = user[0].name;
             const email = user[0].email;
