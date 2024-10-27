@@ -3,7 +3,8 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:5001', // Ubah sesuai URL API kamu
+  // baseURL: 'http://localhost:5001', 
+  baseURL: 'https://kasir-online-server.vercel.app', 
   withCredentials: true
 });
 

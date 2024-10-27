@@ -19,10 +19,6 @@ dotenv.config();
 // });
 
 
-console.log('Database:', process.env.DB_DATABASE);
-console.log('Username:', process.env.DB_USERNAME);
-console.log('Password:', process.env.DB_PASSWORD);
-console.log('Host:', process.env.DB_HOST);
 
 const db = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
