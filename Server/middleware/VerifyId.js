@@ -4,6 +4,7 @@ import Users from "../models/UserModel.js";
 export const verifyID = async (req, res, next) => {
       
     // kalo server direset sessionn akan hilang
+    console.log("hasil Session coockies :", req.session);
     if(!req.session.userId){
         return res.status(401).json({message: "Session empty, Login again "});
     }
