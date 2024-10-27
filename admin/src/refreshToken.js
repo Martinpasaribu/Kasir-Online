@@ -3,11 +3,11 @@ import { jwtDecode } from 'jwt-decode';
 
 const axiosClient = axios.create({
 
-  baseURL: 'http://localhost:5001', 
-  // baseURL: 'https://kasir-online-server.vercel.app', 
+  // baseURL: 'http://localhost:5001', 
+  // // baseURL: 'https://kasir-online-server.vercel.app', 
 
-  // // baseURL: 'http://localhost:5001', 
-  // baseURL: 'https://kasir-online-server.vercel.app', 
+  // baseURL: 'http://localhost:5001', 
+  baseURL: 'https://kasir-online-server.vercel.app', 
 
   withCredentials: true
 });
