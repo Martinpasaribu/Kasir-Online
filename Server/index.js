@@ -42,13 +42,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { 
-        
+
         httpOnly: true, 
-        secure: true, // fungsi untuk bertukarang use Https
-        sameSite:'none',
-   
-        // httpOnly: true, // Mengurangi risiko serangan XSS
-        maxAge: 1000 * 60 * 60 * 24 // Cookie berlaku selama 1 hari
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24 
     }
 }));
 
