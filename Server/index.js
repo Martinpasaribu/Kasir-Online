@@ -88,6 +88,14 @@ app.use(cors({
 
 app.use(router);
 
+app.use((req, res, next) => {
+    console.log("Session middleware:", req.session);
+    console.log("Session UserID:", req.session.userId);
+    next();
+});
+
+
+
 app.use("/", (req, res) => {
     res.send("Server is running");
 });
