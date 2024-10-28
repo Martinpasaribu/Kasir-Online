@@ -153,8 +153,17 @@ export const getTransactionSUM = async (req, res) => {
             }
         });
 
+        const transactionDelete = await Transaction.findAll({
+            attributes:['uuid','invoiceNo','date','customer','product','userId','totalPrice','deletedAt'],
+            where : {
+                userId: req.session.userId
+            },
+            paranoid: false
+        });
+
         const totalTransactions = transactions.length;
         const totalProduct = product.length;
+        const totalProductDeleted = transactionDelete.length;
 
         let stock  =  product.reduce((total, item) => {
                         return total + (item.quantity || 0)  ; 
@@ -176,7 +185,9 @@ export const getTransactionSUM = async (req, res) => {
             totalProduct: totalProduct,
             totalStock:stock,
             totalProductEmptyData:empty,
+            totalTransactionEmptyData:transactionDelete,
             totalProductEmpty:totalProductEmpty,
+            totalProductDeleted:totalProductDeleted,
             totalAmount: totalAmount,
             summaryDate: Date.now()
         };
