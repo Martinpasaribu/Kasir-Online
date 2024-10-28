@@ -156,9 +156,12 @@ export const getTransactionSUM = async (req, res) => {
         const transactionDelete = await Transaction.findAll({
             attributes:['uuid','invoiceNo','date','customer','product','userId','totalPrice','deletedAt'],
             where : {
-                userId: req.session.userId
+                userId: req.session.userId,
+                deletedAt: {
+                    [Op.ne]: null 
+                  }
             },
-            paranoid: true
+            paranoid: false
         });
 
         function formatTanggal(dateString) {
