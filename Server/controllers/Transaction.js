@@ -158,12 +158,24 @@ export const getTransactionSUM = async (req, res) => {
             where : {
                 userId: req.session.userId
             },
-            paranoid: false
+            paranoid: true
+        });
+
+        function formatTanggal(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'UTC', hour12: false };
+            const date = new Date(dateString);
+            return new Intl.DateTimeFormat('id-ID', options).format(date);
+          }
+        const formattedTransactions = transactionDelete.map(transaction => {
+            return {
+                ...transaction.toJSON(), 
+                deletedAt: formatTanggal(transaction.deletedAt)
+            };
         });
 
         const totalTransactions = transactions.length;
         const totalProduct = product.length;
-        const totalProductDeleted = transactionDelete.length;
+        const totalTransactionDelete = transactionDelete.length;
 
         let stock  =  product.reduce((total, item) => {
                         return total + (item.quantity || 0)  ; 
@@ -172,7 +184,8 @@ export const getTransactionSUM = async (req, res) => {
         let empty =  product.filter(item => item.quantity === 0);
 
         let totalAmount = 0;
-                
+
+
         transactions.forEach(transaction => {
             totalAmount += transaction.totalPrice; 
         });
@@ -185,9 +198,9 @@ export const getTransactionSUM = async (req, res) => {
             totalProduct: totalProduct,
             totalStock:stock,
             totalProductEmptyData:empty,
-            totalTransactionEmptyData:transactionDelete,
+            totalTransactionEmptyData:formattedTransactions,
             totalProductEmpty:totalProductEmpty,
-            totalProductDeleted:totalProductDeleted,
+            totalTransactionDelete:totalTransactionDelete,
             totalAmount: totalAmount,
             summaryDate: Date.now()
         };

@@ -125,59 +125,98 @@
                        
                     </div>
 
-                    <div class="flex justify-around items-center w-full">
-                        <div class="flex items-center justify-center h-32 rounded bg-gray-50 dark:bg-gray-800">
+                    <div class="flex flex-col   w-full">
+                        <div class="flex items-center justify-start h-32 rounded bg-gray-50 dark:bg-gray-800">
                             <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
-                                <div class="grid grid-cols-3 gap-3 mb-2">
+                                <div class="grid grid-cols-4 gap-3 mb-2">
                                     <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
                                         <dt class="w-8 h-8 rounded-full bg-blue-100 dark:bg-gray-500 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1">64</dt>
                                         <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium">Access</dd>
                                     </dl>
                                     <dl class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
                                         <dt class="w-8 h-8 rounded-full bg-teal-100 dark:bg-gray-500 text-teal-600 dark:text-teal-300 text-sm font-medium flex items-center justify-center mb-1">{{ stateResTransactionSum && stateResTransactionSum[0].totalStock }}</dt>
-                                        <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium">Total stock</dd>
+                                        <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium">Total Stock</dd>
                                     </dl>
                                     <dl class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px] px-1">
                                         <dt class="w-8 h-8 rounded-full bg-orange-100 dark:bg-gray-500 text-orange-600 dark:text-orange-300 text-sm font-medium flex items-center justify-center mb-1">{{ stateResTransactionSum && stateResTransactionSum[0].totalProductEmpty }}</dt>
                                         <dd class="text-orange-600 dark:text-orange-300 text-sm font-medium">Empty Product</dd>
                                     </dl>
+                                    <dl class="bg-purple-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px] px-1">
+                                        <dt class="w-8 h-8 rounded-full bg-purple-100 dark:bg-gray-500 text-purple-600 text-sm font-medium flex items-center justify-center mb-1">{{ stateResTransactionSum && stateResTransactionSum[0].totalTransactionDelete }}</dt>
+                                        <dd class="text-purple-600 dark:text-purple-300 text-sm font-medium">Transaction Deleted</dd>
+                                    </dl>
                                 </div>
                             </div>
 
                         </div>
-                        
-                        <div class="w-[30rem] mb-10 ">
-                            <div class="flex items-center justify-between mb-4 p-5 bg-gray-50">
-                                    <h5 class="text-md font-bold leading-none text-gray-900 dark:text-white"> Stock product empty</h5>
-                                    <div class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
-                                        View all
+                        <div class="flex gap-4 px-4">                                   
+                            <div class="w-full mb-10 ">
+                                <div class="flex items-center justify-between mb-4 p-5 bg-gray-50">
+                                        <h5 class="text-md font-bold leading-none text-gray-900 dark:text-white"> Stock product empty</h5>
+                                        <div class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                                            View all
+                                        </div>
+                                </div>
+                                <div v-for="transaction in stateResTransactionSum" :key="transaction.invoiceNo"  class="flex flex-col items-center justify-center px-[.5rem] py-5 overflow-y-auto rounded dark:bg-gray-800  border border-blue-200">         
+                                    <div class="h-[10rem]">
+                                            <ul  v-for="(item, index) in transaction.totalProductEmptyData" :key="index" role="list" class="divide-y divide-gray-200 dark:divide-gray-700 ">
+                                                <li class="py-3 sm:py-4 px-6">
+                                                    <div class="flex items-center px-12 py-4 gap-4 bg-gray-100">
+                                                        <div class="flex-shrink-0">
+                                                            <img class="w-10 h-10 rounded-full" src="https://assets.skor.id/crop/0x0:0x0/x/photo/2020/03/23/604720231.png" alt="Neil image">
+                                                        </div>
+                                                        <div class="flex-1 min-w-0 ms-4">
+                                                            <p class="text-md font-medium text-gray-900 truncate dark:text-white">
+                                                                {{ item.name }}
+                                                            </p>
+                                                            <p class="text-[10px] text-gray-500 truncate dark:text-gray-400">
+                                                                {{ item.uuid }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                            {{ item.quantity }}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                     </div>
-                            </div>
-                            <div v-for="transaction in stateResTransactionSum" :key="transaction.invoiceNo"  class="flex flex-col items-center justify-center  overflow-y-auto rounded dark:bg-gray-800 px-[1rem] py-5 border border-blue-200">         
-                                <div class="h-[10rem]">
-                                        <ul  v-for="(item, index) in transaction.totalProductEmptyData" :key="index" role="list" class="divide-y divide-gray-200 dark:divide-gray-700 ">
-                                            <li class="py-3 sm:py-4 px-10">
-                                                <div class="flex items-center px-12 py-4 gap-4 bg-gray-100">
-                                                    <div class="flex-shrink-0">
-                                                        <img class="w-10 h-10 rounded-full" src="https://assets.skor.id/crop/0x0:0x0/x/photo/2020/03/23/604720231.png" alt="Neil image">
-                                                    </div>
-                                                    <div class="flex-1 min-w-0 ms-4">
-                                                        <p class="text-md font-medium text-gray-900 truncate dark:text-white">
-                                                            {{ item.name }}
-                                                        </p>
-                                                        <p class="text-[10px] text-gray-500 truncate dark:text-gray-400">
-                                                            {{ item.uuid }}
-                                                        </p>
-                                                    </div>
-                                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        {{ item.quantity }}
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
                                 </div>
                             </div>
+                            <div class="w-full mb-10 ">
+                                <div class="flex items-center justify-between mb-4 p-5 bg-gray-50">
+                                        <h5 class="text-md font-bold leading-none text-gray-900 dark:text-white"> Transaction deleted</h5>
+                                        <div class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                                            View all
+                                        </div>
+                                </div>
+                                <div v-for="transaction in stateResTransactionSum" :key="transaction.invoiceNo"  class="flex flex-col items-center justify-center px-[.5rem] py-5 overflow-y-auto rounded dark:bg-gray-800  border border-blue-200">         
+                                    <div class="h-[10rem]">
+                                            <ul  v-for="(item, index) in transaction.totalTransactionEmptyData" :key="index" role="list" class="divide-y divide-gray-200 dark:divide-gray-700 ">
+                                                <li class="py-3 sm:py-4 px-6">
+                                                    <div class="flex items-center px-12 py-4 gap-4 bg-gray-100">
+                                                        <div class="flex-shrink-0">
+                                                            <img class="w-10 h-10 rounded-full" src="https://assets.skor.id/crop/0x0:0x0/x/photo/2020/03/23/604720231.png" alt="Neil image">
+                                                        </div>
+                                                        <div class="flex-1 min-w-0 ms-4">
+                                                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                                No : {{ item.invoiceNo }}
+                                                            </p>
+                                                            <p class="text-[10px] text-gray-500 truncate dark:text-gray-400">
+                                                                {{ item.deletedAt }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                            {{ item.quantity }}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
 
                 </div>
