@@ -198,7 +198,7 @@ export const getTransactionSUM = async (req, res) => {
             totalProduct: totalProduct,
             totalStock:stock,
             totalProductEmptyData:empty,
-            totalTransactionEmptyData:formattedTransactions,
+            totalTransactionDeletedData:formattedTransactions,
             totalProductEmpty:totalProductEmpty,
             totalTransactionDelete:totalTransactionDelete,
             totalAmount: totalAmount,

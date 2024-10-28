@@ -191,7 +191,7 @@
                                 </div>
                                 <div v-for="transaction in stateResTransactionSum" :key="transaction.invoiceNo"  class="flex flex-col items-center justify-center px-[.5rem] py-5 overflow-y-auto rounded dark:bg-gray-800  border border-blue-200">         
                                     <div class="h-[10rem]">
-                                            <ul  v-for="(item, index) in transaction.totalTransactionEmptyData" :key="index" role="list" class="divide-y divide-gray-200 dark:divide-gray-700 ">
+                                            <ul  v-for="(item, index) in transaction.totalTransactionDeletedData" :key="index" role="list" class="divide-y divide-gray-200 dark:divide-gray-700 ">
                                                 <li class="py-3 sm:py-4 px-6">
                                                     <div class="flex items-center px-12 py-4 gap-4 bg-gray-100">
                                                         <div class="flex-shrink-0">
