@@ -305,7 +305,9 @@
                             </button>
                         </div>
 
-                        <h1 :class=" filteredProduct[0].quantity <= 0 ? ' mb-2 pb-2 px-5 text-[12px] flex justify-start items-center ':'hidden' " > <h1 class="bg-rose-200 p-1 px-2 rounded-lg text-red-700">Produk habis</h1></h1>
+                        <div :class=" filteredProduct[0].quantity <= 0 ? ' mb-2 pb-2 px-5 text-[12px] flex justify-start items-center ':'hidden' " > 
+                            <h1 class="bg-rose-200 p-1 px-2 rounded-lg text-red-700">Produk habis</h1>
+                        </div>
 
                     <!-- Modal header -->
                     <div  class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -635,11 +637,31 @@ export default {
     computed: {
 
         ...mapState(['stateResTransaction','dataAddProduct','resAddProduct']), 
-        ...mapState(['stateResProduct']), 
+        ...mapState(['stateResProduct','isLoading']), 
         ...mapGetters(['filteredProduct','totalPrice','setParserJson']),
 
  
         
+    },
+
+    watch: {
+        isLoading(newVal) {
+        if (newVal) {
+            toast.info("Loading data...", {
+            autoClose: false,
+            isLoading: true,
+            position: "top-right",
+            theme: "colored",
+            type: "loading",
+            pauseOnHover: false,
+            hideProgressBar: true,
+            transition: "side",
+            dangerouslyHTMLString: true
+            });
+        } else {
+            toast.clearAll();
+        }
+        }
     },
 
     mounted() {

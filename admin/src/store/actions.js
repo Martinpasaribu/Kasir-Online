@@ -81,17 +81,18 @@ export async function addProduct({ commit }, packet) {
 
 export async function getProduct({ commit }) {
   console.log("Fetching Product...");
-  await accessTokens.get('/product')
-    .then(response => {
-      const { data } = response;
-      console.log("Data product:", data.data);
-      commit('setResGetProduct', data.data );
-    })
-    .catch(error => {
-      console.error("Error fetching product:", error);
-      throw error; 
-    });
-    
+  commit('setLoading', true);
+
+  try {
+    const response = await accessTokens.get('/product');
+    commit('setResGetProduct', response.data.data);
+  } catch (error) {
+    console.error("Error fetching Product:", error);
+    throw error;
+  } finally {
+    commit('setLoading', false);
+  }
+
 }
 
 
@@ -116,30 +117,34 @@ export async function addTransaction({ commit }, packet) {
 
 export async function getTransaction({ commit }, value) {
   console.log("Fetching Transaction...");
-  await accessTokens.get(`/transaction`)
-  .then(response => {
-    const { data } = response;
-    console.log("Data Transaction:", data);
-    commit('setResGetTransaction', data.data);
-  })
-  .catch(error => {
+  commit('setLoading', true);
+
+  try {
+    const response = await accessTokens.get('/transaction');
+    commit('setResGetTransaction', response.data.data);
+  } catch (error) {
     console.error("Error fetching transaction:", error);
-    throw error; 
-  });
+    throw error;
+  } finally {
+    commit('setLoading', false);
+  }
+
 }
 
 export async function getTransactionSum({ commit }) {
   console.log("Fetching Transaction SUM...");
-  await accessTokens.get(`/transactionSum`)
-  .then(response => {
-    const { data } = response;
-    console.log("Data Summray Transaction:", data);
-    commit('setResGetTransactionSum', data.data);
-  })
-  .catch(error => {
+  commit('setLoading', true);
+
+  try {
+    const response = await accessTokens.get('/transactionSum');
+    commit('setResGetTransactionSum', response.data.data);
+  } catch (error) {
     console.error("Error fetching transaction SUM:", error);
-    throw error; 
-  });
+    throw error;
+  } finally {
+    commit('setLoading', false);
+  }
+
 }
 
 export async function delTransaction({ commit, state }, ) {

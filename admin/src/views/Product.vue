@@ -352,12 +352,33 @@ export default {
 
     computed: {
 
-        ...mapState(['stateResProduct']), 
+        ...mapState(['stateResProduct','isLoading']), 
         ...mapState(['stateResPostProduct']),
 
 
         
     },
+
+    watch: {
+        isLoading(newVal) {
+        if (newVal) {
+            toast.info("Loading data...", {
+            autoClose: false,
+            isLoading: true,
+            position: "top-right",
+            theme: "colored",
+            type: "loading",
+            pauseOnHover: false,
+            hideProgressBar: true,
+            transition: "side",
+            dangerouslyHTMLString: true
+            });
+        } else {
+            toast.clearAll();
+        }
+        }
+    },
+    
 
     mounted() {
         

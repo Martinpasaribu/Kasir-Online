@@ -8,9 +8,9 @@ import router from './router';
 
 import { addIcons } from "oh-vue-icons";
 import { OhVueIcon } from "oh-vue-icons";
-import { CoOptions, MdNoteaddRound, MdOpeninbrowser , MdAddSharp , CoShopify,RiDeleteBin4Line , MdDeleteoutline,CoRipple       } from "oh-vue-icons/icons";
+import { CoOptions, MdNoteaddRound, MdOpeninbrowser , MdAddSharp , CoShopify,RiDeleteBin4Line , MdDeleteoutline,CoRipple,IoBagHandleSharp,IoCube, MdLogout          } from "oh-vue-icons/icons";
 
-addIcons(CoOptions, MdNoteaddRound, MdOpeninbrowser, MdAddSharp , CoShopify,RiDeleteBin4Line , MdDeleteoutline,CoRipple      ); // Tambahkan ikon CoOptions
+addIcons(CoOptions, MdNoteaddRound, MdOpeninbrowser, MdAddSharp , CoShopify,RiDeleteBin4Line , MdDeleteoutline,CoRipple,IoBagHandleSharp,IoCube, MdLogout        ); // Tambahkan ikon CoOptions
 
 const app = createApp(App);
 

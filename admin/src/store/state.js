@@ -19,6 +19,10 @@
     stateResDeletedTransaction:'',
     // stateResTransactions:[],
     pickTransaction: null,
+
+
+    isLoading: false,
+    
     
   user: null,
 };

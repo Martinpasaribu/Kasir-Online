@@ -1,4 +1,11 @@
- // ===============================    Auth   ======================================
+
+
+export function setLoading(state, res) {
+  state.isLoading = res ;
+}
+
+
+// ===============================    Auth   ======================================
 
 
   export function setResponseLogin(state, res) {
