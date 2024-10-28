@@ -488,7 +488,7 @@ export default {
             }
             } catch (error) {
                 console.error('Add Bucket error:', error);
-                const errorMessage = error.response?.data?.message || "Add Bucket gagal. Silakan coba lagi.";
+                const errorMessage = error.response?.data?.message || "Server has problem Add Bucket failed";
                 toast.error(errorMessage, {
                     autoClose: 2000,
                     position: "top-right",
@@ -550,7 +550,7 @@ export default {
             }); 
             } catch (error) {
                 console.error('Add Transaction error:', error);
-                const errorMessage = error.response?.data?.message || "Add Transaction gagal. Silakan coba lagi.";
+                const errorMessage = error.response?.data?.message || "Server has problem Add Transaction failed";
                 toast.error(errorMessage, {
                     autoClose: 2000,
                     position: "top-right",
@@ -590,7 +590,7 @@ export default {
 
             } catch (error) {
                 console.error('Load Data Transaction error:', error);
-                const errorMessage = error.response?.data?.message || "Gagal Load Data Transaction.";
+                const errorMessage = error.response?.data?.message || " Server has problem Load Data Transaction filed.";
                 toast.error(errorMessage, {
                     autoClose: 2000,
                     position: "top-right",
@@ -611,7 +611,7 @@ export default {
 
             } catch (error) {
                 console.error('Load Data Product error:', error);
-                const errorMessage = error.response?.data?.message || "Gagal Load Data Product.";
+                const errorMessage = error.response?.data?.message || "Server has problem Load Data Product failed.";
                 toast.error(errorMessage, {
                     autoClose: 2000,
                     position: "top-right",

@@ -328,7 +328,7 @@ export default {
 
             } catch (error) {
                 console.error('Load Data Product error:', error);
-                const errorMessage = error.response?.data?.message || "Gagal Load Data Product.";
+                const errorMessage = error.response?.data?.message || "Server has problem Load Data Product failed.";
                 toast.error(errorMessage, {
                     autoClose: 2000,
                     position: "top-right",

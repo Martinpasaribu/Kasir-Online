@@ -88,7 +88,7 @@ export default {
 
             } catch (error) {
                 console.error('Login error:', error);
-                const errorMessage = error.response?.data?.msg || "Login gagal. Silakan coba lagi."; 
+                const errorMessage = error.response?.data?.msg || "Server has problem Login failed try again."; 
                 toast.error(errorMessage, {
                     autoClose: 2000,
                     position: "top-center",

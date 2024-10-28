@@ -12,7 +12,7 @@
         
 
 
-        <form @submit.prevent="submitRegister()" class="max-w-sm mx-auto">
+        <form @submit.prevent="submitRegister()" class="max-w-sm mx-auto mb-24">
             <div class="mb-5">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
                 <input  v-model="register.name" type="text" id="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name" required />
@@ -30,7 +30,7 @@
                 <input v-model="register.confPassword" type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
             </div>
             <div class="mb-5">
-                <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PhoneNumber</label>
+                <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
                 <input v-model="register.phoneNumber" type="text" id="phoneNumber" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
             </div>
 
@@ -100,7 +100,7 @@ export default {
 
             } catch (error) {
                 console.error('Register error:', error);
-                const errorMessage = error.response?.data?.msg || "Register gagal. Silakan coba lagi."; 
+                const errorMessage = error.response?.data?.msg || "Server has problem Register failed. try again."; 
                 toast.error(errorMessage, {
                     autoClose: 2000,
                     position: "top-center",
